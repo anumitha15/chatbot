@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Reference</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+    
+    body {
+      color: #1a1a1a;
+      background-color: #f5f6f7;
+      line-height: 1.5;
+    }
+    
+    header {
+      background-color: #20232a;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+    
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #61dafb;
+    }
+    
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 1.5rem;
+    }
+    
+    nav a {
+      color: white;
+      text-decoration: none;
+      opacity: 0.8;
+      transition: opacity 0.2s;
+    }
+    
+    nav a:hover {
+      opacity: 1;
+    }
+    
+    .container {
+      display: flex;
+      min-height: calc(100vh - 60px);
+    }
+    
+    .sidebar {
+      width: 280px;
+      background-color: white;
+      border-right: 1px solid #eaeaea;
+      padding: 2rem 1rem;
+      height: calc(100vh - 60px);
+      position: sticky;
+      top: 60px;
+      overflow-y: auto;
+    }
+    
+    .sidebar h3 {
+      font-size: 0.85rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: #6b6b6b;
+      margin-bottom: 1rem;
+      margin-top: 1.5rem;
+    }
+    
+    .sidebar h3:first-child {
+      margin-top: 0;
+    }
+    
+    .sidebar ul {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+    
+    .sidebar li {
+      margin-bottom: 0.5rem;
+    }
+    
+    .sidebar a {
+      display: block;
+      color: #484848;
+      text-decoration: none;
+      padding: 0.5rem;
+      border-radius: 4px;
+      transition: background-color 0.2s;
+    }
+    
+    .sidebar a:hover {
+      background-color: #f0f0f0;
+    }
+    
+    .sidebar a.active {
+      background-color: #e6f7ff;
+      color: #1890ff;
+      font-weight: 500;
+    }
+    
+    .content {
+      flex: 1;
+      padding: 2rem 3rem;
+      overflow-y: auto;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    
+    .content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      font-weight: 600;
+    }
+    
+    .content h2 {
+      font-size: 1.75rem;
+      margin: 2.5rem 0 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid #eaeaea;
+    }
+    
+    .content h3 {
+      font-size: 1.3rem;
+      margin: 2rem 0 1rem;
+    }
+    
+    .content p {
+      margin-bottom: 1rem;
+    }
+    
+    .content ul, .content ol {
+      margin-bottom: 1rem;
+      padding-left: 1.5rem;
+    }
+    
+    .api-item {
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+    
+    .api-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+    
+    .api-name {
+      font-family: monospace;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+    
+    .api-badge {
+      font-size: 0.75rem;
+      padding: 0.25rem 0.5rem;
+      border-radius: 4px;
+      text-transform: uppercase;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    
+    .api-badge-get {
+      background-color: #e6f7ff;
+      color: #1890ff;
+    }
+    
+    .api-badge-post {
+      background-color: #f6ffed;
+      color: #52c41a;
+    }
+    
+    .api-badge-put {
+      background-color: #fff7e6;
+      color: #fa8c16;
+    }
+    
+    .api-badge-delete {
+      background-color: #fff1f0;
+      color: #f5222d;
+    }
+    
+    .api-description {
+      margin-bottom: 1.5rem;
+    }
+    
+    .api-section-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: #1a1a1a;
+    }
+    
+    .code-block {
+      background-color: #282c34;
+      color: #abb2bf;
+      font-family: monospace;
+      padding: 1rem;
+      border-radius: 6px;
+      overflow-x: auto;
+      margin: 1rem 0;
+    }
+    
+    .code-block .keyword {
+      color: #c678dd;
+    }
+    
+    .code-block .string {
+      color: #98c379;
+    }
+    
+    .code-block .number {
+      color: #d19a66;
+    }
+    
+    .code-block .comment {
+      color: #5c6370;
+      font-style: italic;
+    }
+    
+    .param-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+    }
+    
+    .param-table th {
+      text-align: left;
+      padding: 0.75rem;
+      border-bottom: 2px solid #eaeaea;
+      font-weight: 600;
+    }
+    
+    .param-table td {
+      padding: 0.75rem;
+      border-bottom: 1px solid #eaeaea;
+    }
+    
+    .param-name {
+      font-family: monospace;
+      font-weight: 500;
+    }
+    
+    .param-type {
+      color: #1890ff;
+      font-family: monospace;
+      font-size: 0.9rem;
+    }
+    
+    .param-required {
+      font-size: 0.8rem;
+      color: #f5222d;
+      font-weight: 500;
+    }
+    
+    .param-optional {
+      font-size: 0.8rem;
+      color: #8c8c8c;
+    }
+    
+    .response-example {
+      margin-top: 1rem;
+    }
+    
+    .tabs {
+      display: flex;
+      margin-bottom: 0;
+      border-bottom: 1px solid #eaeaea;
+    }
+    
+    .tab {
+      padding: 0.5rem 1rem;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+    }
+    
+    .tab.active {
+      border-bottom: 2px solid #1890ff;
+      color: #1890ff;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">API Reference</div>
+    <nav>
+      <ul>
+        <li><a href="#">Docs</a></li>
+        <li><a href="#">API</a></li>
+        <li><a href="#">Tutorial</a></li>
+        <li><a href="#">Community</a></li>
+        <li><a href="#">GitHub</a></li>
+      </ul>
+    </nav>
+  </header>
+  
+  <div class="container">
+    <aside class="sidebar">
+      <h3>Getting Started</h3>
+      <ul>
+        <li><a href="#">Introduction</a></li>
+        <li><a href="#">Quick Start</a></li>
+        <li><a href="#">Authentication</a></li>
+      </ul>
+      
+      <h3>Core Resources</h3>
+      <ul>
+        <li><a href="#" class="active">Users</a></li>
+        <li><a href="#">Products</a></li>
+        <li><a href="#">Orders</a></li>
+        <li><a href="#">Payments</a></li>
+      </ul>
+      
+      <h3>Utilities</h3>
+      <ul>
+        <li><a href="#">Search</a></li>
+        <li><a href="#">Analytics</a></li>
+        <li><a href="#">Webhooks</a></li>
+      </ul>
+      
+      <h3>Client Libraries</h3>
+      <ul>
+        <li><a href="#">JavaScript</a></li>
+        <li><a href="#">Python</a></li>
+        <li><a href="#">Ruby</a></li>
+        <li><a href="#">PHP</a></li>
+      </ul>
+    </aside>
+    
+    <main class="content">
+      <h1>Users API</h1>
+      <p>The Users API allows you to create, retrieve, update, and delete users in your application.</p>
+      
+      <section class="api-item">
+        <div class="api-header">
+          <div class="api-name">GET /api/users</div>
+          <div class="api-badge api-badge-get">GET</div>
+        </div>
+        <div class="api-description">
+          <p>Returns a list of users. The users are returned sorted by creation date, with the most recently created users appearing first.</p>
+        </div>
+        
+        <div class="api-section-title">Query Parameters</div>
+        <table class="param-table">
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="param-name">limit</td>
+              <td><span class="param-type">integer</span> <span class="param-optional">optional</span></td>
+              <td>A limit on the number of objects to be returned. Default is 10.</td>
+            </tr>
+            <tr>
+              <td class="param-name">offset</td>
+              <td><span class="param-type">integer</span> <span class="param-optional">optional</span></td>
+              <td>Number of items to skip before starting to collect the result set.</td>
+            </tr>
+            <tr>
+              <td class="param-name">role</td>
+              <td><span class="param-type">string</span> <span class="param-optional">optional</span></td>
+              <td>Filter users by role (e.g. 'admin', 'customer').</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="api-section-title">Example Request</div>
+        <div class="code-block">
+<span class="keyword">fetch</span>('<span class="string">https://api.example.com/api/users?limit=5&role=admin</span>')
+  .<span class="keyword">then</span>(response => response.json())
+  .<span class="keyword">then</span>(data => <span class="keyword">console</span>.log(data))
+  .<span class="keyword">catch</span>(error => <span class="keyword">console</span>.error('Error:', error));
+        </div>
+        
+        <div class="api-section-title">Example Response</div>
+        <div class="code-block">
+{
+  "<span class="keyword">data</span>": [
+    {
+      "<span class="string">id</span>": "<span class="string">usr_1234567890</span>",
+      "<span class="string">name</span>": "<span class="string">John Doe</span>",
+      "<span class="string">email</span>": "<span class="string">john.doe@example.com</span>",
+      "<span class="string">role</span>": "<span class="string">admin</span>",
+      "<span class="string">created_at</span>": "<span class="string">2025-03-01T12:00:00Z</span>"
+    },
+    {
+      "<span class="string">id</span>": "<span class="string">usr_0987654321</span>",
+      "<span class="string">name</span>": "<span class="string">Jane Smith</span>",
+      "<span class="string">email</span>": "<span class="string">jane.smith@example.com</span>",
+      "<span class="string">role</span>": "<span class="string">admin</span>",
+      "<span class="string">created_at</span>": "<span class="string">2025-02-15T09:30:00Z</span>"
+    }
+  ],
+  "<span class="keyword">meta</span>": {
+    "<span class="string">total</span>": <span class="number">42</span>,
+    "<span class="string">limit</span>": <span class="number">5</span>,
+    "<span class="string">offset</span>": <span class="number">0</span>
+  }
+}
+        </div>
+      </section>
+      
+      <section class="api-item">
+        <div class="api-header">
+          <div class="api-name">POST /api/users</div>
+          <div class="api-badge api-badge-post">POST</div>
+        </div>
+        <div class="api-description">
+          <p>Creates a new user in the system.</p>
+        </div>
+        
+        <div class="api-section-title">Request Parameters</div>
+        <table class="param-table">
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="param-name">name</td>
+              <td><span class="param-type">string</span> <span class="param-required">required</span></td>
+              <td>The full name of the user.</td>
+            </tr>
+            <tr>
+              <td class="param-name">email</td>
+              <td><span class="param-type">string</span> <span class="param-required">required</span></td>
+              <td>The email address of the user. Must be unique.</td>
+            </tr>
+            <tr>
+              <td class="param-name">password</td>
+              <td><span class="param-type">string</span> <span class="param-required">required</span></td>
+              <td>The user's password. Must be at least 8 characters long.</td>
+            </tr>
+            <tr>
+              <td class="param-name">role</td>
+              <td><span class="param-type">string</span> <span class="param-optional">optional</span></td>
+              <td>The user's role. Defaults to 'customer'.</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="api-section-title">Example Request</div>
+        <div class="code-block">
+<span class="keyword">fetch</span>('<span class="string">https://api.example.com/api/users</span>', {
+  <span class="string">method</span>: '<span class="string">POST</span>',
+  <span class="string">headers</span>: {
+    '<span class="string">Content-Type</span>': '<span class="string">application/json</span>',
+    '<span class="string">Authorization</span>': '<span class="string">Bearer YOUR_API_KEY</span>'
+  },
+  <span class="string">body</span>: <span class="keyword">JSON</span>.stringify({
+    <span class="string">name</span>: '<span class="string">Alex Johnson</span>',
+    <span class="string">email</span>: '<span class="string">alex.johnson@example.com</span>',
+    <span class="string">password</span>: '<span class="string">securepassword123</span>',
+    <span class="string">role</span>: '<span class="string">manager</span>'
+  })
+})
+.<span class="keyword">then</span>(response => response.json())
+.<span class="keyword">then</span>(data => <span class="keyword">console</span>.log(data))
+.<span class="keyword">catch</span>(error => <span class="keyword">console</span>.error('Error:', error));
+        </div>
+        
+        <div class="api-section-title">Example Response</div>
+        <div class="code-block">
+{
+  "<span class="string">id</span>": "<span class="string">usr_2468101214</span>",
+  "<span class="string">name</span>": "<span class="string">Alex Johnson</span>",
+  "<span class="string">email</span>": "<span class="string">alex.johnson@example.com</span>",
+  "<span class="string">role</span>": "<span class="string">manager</span>",
+  "<span class="string">created_at</span>": "<span class="string">2025-03-10T10:15:30Z</span>"
+}
+        </div>
+      </section>
+      
+      <section class="api-item">
+        <div class="api-header">
+          <div class="api-name">GET /api/users/:id</div>
+          <div class="api-badge api-badge-get">GET</div>
+        </div>
+        <div class="api-description">
+          <p>Retrieves a user by their unique identifier.</p>
+        </div>
+        
+        <div class="api-section-title">Path Parameters</div>
+        <table class="param-table">
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="param-name">id</td>
+              <td><span class="param-type">string</span> <span class="param-required">required</span></td>
+              <td>The unique identifier of the user to retrieve.</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="api-section-title">Example Request</div>
+        <div class="code-block">
+<span class="keyword">fetch</span>('<span class="string">https://api.example.com/api/users/usr_1234567890</span>', {
+  <span class="string">headers</span>: {
+    '<span class="string">Authorization</span>': '<span class="string">Bearer YOUR_API_KEY</span>'
+  }
+})
+.<span class="keyword">then</span>(response => response.json())
+.<span class="keyword">then</span>(data => <span class="keyword">console</span>.log(data))
+.<span class="keyword">catch</span>(error => <span class="keyword">console</span>.error('Error:', error));
+        </div>
+        
+        <div class="api-section-title">Example Response</div>
+        <div class="code-block">
+{
+  "<span class="string">id</span>": "<span class="string">usr_1234567890</span>",
+  "<span class="string">name</span>": "<span class="string">John Doe</span>",
+  "<span class="string">email</span>": "<span class="string">john.doe@example.com</span>",
+  "<span class="string">role</span>": "<span class="string">admin</span>",
+  "<span class="string">created_at</span>": "<span class="string">2025-03-01T12:00:00Z</span>",
+  "<span class="string">last_login</span>": "<span class="string">2025-03-10T08:45:22Z</span>",
+  "<span class="string">account_status</span>": "<span class="string">active</span>"
+}
+        </div>
+      </section>
+      
+      <section class="api-item">
+        <div class="api-header">
+          <div class="api-name">PUT /api/users/:id</div>
+          <div class="api-badge api-badge-put">PUT</div>
+        </div>
+        <div class="api-description">
+          <p>Updates an existing user's information.</p>
+        </div>
+        
+        <div class="api-section-title">Path Parameters</div>
+        <table class="param-table">
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="param-name">id</td>
+              <td><span class="param-type">string</span> <span class="param-required">required</span></td>
+              <td>The unique identifier of the user to update.</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="api-section-title">Request Parameters</div>
+        <table class="param-table">
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="param-name">name</td>
+              <td><span class="param-type">string</span> <span class="param-optional">optional</span></td>
+              <td>The updated full name of the user.</td>
+            </tr>
+            <tr>
+              <td class="param-name">email</td>
+              <td><span class="param-type">string</span> <span class="param-optional">optional</span></td>
+              <td>The updated email address of the user. Must be unique.</td>
+            </tr>
+            <tr>
+              <td class="param-name">role</td>
+              <td><span class="param-type">string</span> <span class="param-optional">optional</span></td>
+              <td>The updated role of the user.</td>
+            </tr>
+            <tr>
+              <td class="param-name">account_status</td>
+              <td><span class="param-type">string</span> <span class="param-optional">optional</span></td>
+              <td>The updated account status (e.g. 'active', 'suspended').</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="api-section-title">Example Request</div>
+        <div class="code-block">
+<span class="keyword">fetch</span>('<span class="string">https://api.example.com/api/users/usr_1234567890</span>', {
+  <span class="string">method</span>: '<span class="string">PUT</span>',
+  <span class="string">headers</span>: {
+    '<span class="string">Content-Type</span>': '<span class="string">application/json</span>',
+    '<span class="string">Authorization</span>': '<span class="string">Bearer YOUR_API_KEY</span>'
+  },
+  <span class="string">body</span>: <span class="keyword">JSON</span>.stringify({
+    <span class="string">name</span>: '<span class="string">John M. Doe</span>',
+    <span class="string">role</span>: '<span class="string">super_admin</span>'
+  })
+})
+.<span class="keyword">then</span>(response => response.json())
+.<span class="keyword">then</span>(data => <span class="keyword">console</span>.log(data))
+.<span class="keyword">catch</span>(error => <span class="keyword">console</span>.error('Error:', error));
+        </div>
+        
+        <div class="api-section-title">Example Response</div>
+        <div class="code-block">
+{
+  "<span class="string">id</span>": "<span class="string">usr_1234567890</span>",
+  "<span class="string">name</span>": "<span class="string">John M. Doe</span>",
+  "<span class="string">email</span>": "<span class="string">john.doe@example.com</span>",
+  "<span class="string">role</span>": "<span class="string">super_admin</span>",
+  "<span class="string">created_at</span>": "<span class="string">2025-03-01T12:00:00Z</span>",
+  "<span class="string">updated_at</span>": "<span class="string">2025-03-10T11:22:33Z</span>",
+  "<span class="string">account_status</span>": "<span class="string">active</span>"
+}
+        </div>
+      </section>
+      
+      <section class="api-item">
+        <div class="api-header">
+          <div class="api-name">DELETE /api/users/:id</div>
+          <div class="api-badge api-badge-delete">DELETE</div>
+        </div>
+        <div class="api-description">
+          <p>Permanently deletes a user. This action cannot be undone.</p>
+        </div>
+        
+        <div class="api-section-title">Path Parameters</div>
+        <table class="param-table">
+          <thead>
+            <tr>
+              <th>Parameter</th>
+              <th>Type</th>
+              <th>Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="param-name">id</td>
+              <td><span class="param-type">string</span> <span class="param-required">required</span></td>
+              <td>The unique identifier of the user to delete.</td>
+            </tr>
+          </tbody>
+        </table>
+        
+        <div class="api-section-title">Example Request</div>
+        <div class="code-block">
+<span class="keyword">fetch</span>('<span class="string">https://api.example.com/api/users/usr_1234567890</span>', {
+  <span class="string">method</span>: '<span class="string">DELETE</span>',
+  <span class="string">headers</span>: {
+    '<span class="string">Authorization</span>': '<span class="string">Bearer YOUR_API_KEY</span>'
+  }
+})
+.<span class="keyword">then</span>(response => {
+  <span class="keyword">if</span> (response.status === 204) {
+    <span class="keyword">console</span>.log('User successfully deleted');
+  }
+})
+.<span class="keyword">catch</span>(error => <span class="keyword">console</span>.error('Error:', error));
+        </div>
+        
+        <div class="api-section-title">Response</div>
+        <p>Returns HTTP 204 No Content on success with an empty response body.</p>
+      </section>
+    </main>

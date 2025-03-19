@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CoPassist - Blog</title>
+    <style>
+        :root {
+            --primary: #3b82f6;
+            --primary-dark: #2563eb;
+            --secondary: #10b981;
+            --dark: #1f2937;
+            --light: #f9fafb;
+            --gray: #6b7280;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+        
+        body {
+            background-color: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+        
+        .logo span {
+            color: var(--dark);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--dark);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: var(--primary-dark);
+        }
+        
+        .page-header {
+            text-align: center;
+            padding: 60px 0;
+            background-color: white;
+        }
+        
+        .page-header h1 {
+            font-size: 36px;
+            margin-bottom: 15px;
+        }
+        
+        .page-header p {
+            color: var(--gray);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .blog-section {
+            padding: 60px 0;
+        }
+        
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+        }
+        
+        .blog-card {
+            background-color: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+        }
+        
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .blog-img {
+            height: 200px;
+            background-color: #f3f4f6;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .blog-img svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .blog-content {
+            padding: 20px;
+        }
+        
+        .blog-date {
+            color: var(--gray);
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        
+        .blog-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        
+        .blog-excerpt {
+            color: var(--gray);
+            margin-bottom: 20px;
+        }
+        
+        .read-more {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .blog-categories {
+            padding: 40px 0;
+        }
+        
+        .category-tags {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .category-tag {
+            padding: 8px 16px;
+            background-color: white;
+            border: 1px solid var(--gray);
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .category-tag:hover, .category-tag.active {
+            background-color: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Co<span>Assist</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="community.html">Community</a></li>
+                    <li><a href="integrations.html">Integrations</a></li>
+                    <li><a href="case-studies.html">Case Studies</a></li>
+                </ul>
+                <a href="#" class="btn">Get Started</a>
+            </nav>
+        </div>
+    </header>
+    
+    <div class="page-header">
+        <div class="container">
+            <h1>CoPassist Blog</h1>
+            <p>Insights, updates, and guides to help you get the most out of your CoPassist chatbot</p>
+        </div>
+    </div>
+    
+    <section class="blog-categories">
+        <div class="container">
+            <div class="category-tags">
+                <div class="category-tag active">All</div>
+                <div class="category-tag">AI Updates</div>
+                <div class="category-tag">Tutorials</div>
+                <div class="category-tag">Best Practices</div>
+                <div class="category-tag">Success Stories</div>
+                <div class="category-tag">Product Updates</div>
+            </div>
+        </div>
+    </section>
+    
+    <section class="blog-section">
+        <div class="container">
+            <div class="blog-grid">
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+                            <rect width="600" height="400" fill="#e6f2ff"/>
+                            <circle cx="300" cy="180" r="100" fill="#3b82f6" opacity="0.7"/>
+                            <rect x="200" y="230" width="200" height="120" rx="10" fill="#10b981" opacity="0.8"/>
+                            <path d="M150,150 Q300,50 450,150" stroke="#1f2937" stroke-width="8" fill="none"/>
+                            <circle cx="150" cy="150" r="15" fill="#f59e0b"/>
+                            <circle cx="450" cy="150" r="15" fill="#f59e0b"/>
+                            <text x="300" y="320" text-anchor="middle" font-size="24" font-weight="bold" fill="#ffffff">Training</text>
+                        </svg>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">March 12, 2025</div>
+                        <h3 class="blog-title">How to Train Your CoPassist Bot for Specialized Customer Support</h3>
+                        <p class="blog-excerpt">Learn advanced techniques to customize your chatbot's responses for industry-specific customer service scenarios.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+                            <rect width="600" height="400" fill="#f0f9ff"/>
+                            <path d="M100,300 L300,100 L500,300" stroke="#3b82f6" stroke-width="6" fill="none"/>
+                            <path d="M150,300 L300,150 L450,300" stroke="#10b981" stroke-width="6" fill="none"/>
+                            <path d="M200,300 L300,200 L400,300" stroke="#f59e0b" stroke-width="6" fill="none"/>
+                            <circle cx="300" cy="100" r="15" fill="#3b82f6"/>
+                            <circle cx="300" cy="150" r="15" fill="#10b981"/>
+                            <circle cx="300" cy="200" r="15" fill="#f59e0b"/>
+                            <text x="300" y="350" text-anchor="middle" font-size="24" font-weight="bold" fill="#1f2937">2025 Trends</text>
+                        </svg>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">March 5, 2025</div>
+                        <h3 class="blog-title">2025 AI Chatbot Trends Every Business Should Know</h3>
+                        <p class="blog-excerpt">Stay ahead of the curve with these emerging trends in conversational AI and how they can impact your customer engagement.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+                            <rect width="600" height="400" fill="#ecfdf5"/>
+                            <rect x="150" y="100" width="300" height="200" rx="20" fill="#3b82f6" opacity="0.2"/>
+                            <rect x="180" y="130" width="240" height="140" rx="10" fill="#3b82f6" opacity="0.5"/>
+                            <circle cx="300" cy="200" r="50" fill="#3b82f6"/>
+                            <text x="300" y="210" text-anchor="middle" font-size="40" font-weight="bold" fill="#ffffff">3.0</text>
+                            <text x="300" y="320" text-anchor="middle" font-size="24" font-weight="bold" fill="#1f2937">New Features</text>
+                        </svg>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">February 28, 2025</div>
+                        <h3 class="blog-title">CoPassist 3.0: New Features and Capabilities</h3>
+                        <p class="blog-excerpt">Explore the powerful new features in our latest update and how they can transform your customer interactions.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+                            <rect width="600" height="400" fill="#eff6ff"/>
+                            <rect x="120" y="120" width="160" height="160" rx="15" fill="#3b82f6" opacity="0.7"/>
+                            <rect x="320" y="120" width="160" height="160" rx="15" fill="#10b981" opacity="0.7"/>
+                            <path d="M280,200 L320,200" stroke="#1f2937" stroke-width="6" stroke-dasharray="10,5" fill="none"/>
+                            <circle cx="200" cy="200" r="30" fill="#ffffff"/>
+                            <circle cx="400" cy="200" r="30" fill="#ffffff"/>
+                            <text x="200" y="208" text-anchor="middle" font-size="24" font-weight="bold" fill="#3b82f6">CRM</text>
+                            <text x="400" y="208" text-anchor="middle" font-size="24" font-weight="bold" fill="#10b981">Bot</text>
+                        </svg>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">February 21, 2025</div>
+                        <h3 class="blog-title">Integrating CoPassist with Your CRM: Step-by-Step Guide</h3>
+                        <p class="blog-excerpt">A comprehensive tutorial on connecting your chatbot to popular CRM platforms for seamless customer data flow.</p>
+                        <a href="#" class="read-more">Read More →</a>
+                    </div>
+                </div>
+                
+                <div class="blog-card">
+                    <div class="blog-img">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+                            <rect width="600" height="400" fill="#f0fdf4"/>
+                            <circle cx="300" cy="200" r="130" fill="#3b82f6" opacity="0.1"/>
+                            <circle cx="300" cy="200" r="100" fill="#3b82f6" opacity="0.2"/>
+                            <circle cx="300" cy="200" r="70" fill="#3b82f6" opacity="0.3"/>
+                            <path d="M300,130 L300,200 L370,200" stroke="#1f2937" stroke-width="6" fill="none"/>
+                            <circle cx="300" cy="200" r="15" fill="#1f2937"/>
+                            <text x="240" y="280" font-size="60" font-weight="bold" fill="#10b981">ROI</text>
+                            <text x="380" y="280" font-size="24" font-weight="bold" fill="#10b981">$</text>
+                        </svg>
+                    </div>
+                    <div class="blog-content">
+                        <div class="blog-date">February 15, 2025</div>
+                        <h3 class="blog-title">Measuring ROI: How CoPassist Saves Support Costs</h3>
+                        <p class="blog-excerpt">Learn how to track and analyze the financial benefits of implementing an AI chatbot solution.</p>
+                        <a href

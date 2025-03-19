@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Features | Your Company</title>
+    <style>
+        :root {
+            --primary-color: #4a6bff;
+            --secondary-color: #34d399;
+            --dark-color: #1f2937;
+            --light-color: #f9fafb;
+            --gray-color: #6b7280;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: var(--dark-color);
+            background-color: var(--light-color);
+        }
+        
+        a {
+            text-decoration: none;
+            color: var(--primary-color);
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+        
+        header {
+            background-color: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+        
+        .logo span {
+            color: var(--primary-color);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: var(--dark-color);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-links .active {
+            color: var(--primary-color);
+        }
+        
+        .cta-button {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .cta-button:hover {
+            background-color: #3a56d4;
+            color: white;
+        }
+        
+        .back-home {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            z-index: 99;
+            transition: transform 0.3s, background-color 0.3s;
+        }
+        
+        .back-home:hover {
+            transform: translateY(-5px);
+            background-color: #3a56d4;
+            color: white;
+        }
+        
+        .hero {
+            padding: 5rem 0;
+            text-align: center;
+            background-color: white;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--gray-color);
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+        
+        .features-section {
+            padding: 5rem 0;
+        }
+        
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--gray-color);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+        }
+        
+        .feature-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #f3f4f6;
+            color: var(--primary-color);
+            font-size: 3.5rem;
+        }
+        
+        .feature-content {
+            padding: 2rem;
+        }
+        
+        .feature-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-content p {
+            color: var(--gray-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .learn-more {
+            display: inline-flex;
+            align-items: center;
+            font-weight: 500;
+        }
+        
+        .learn-more span {
+            margin-left: 0.5rem;
+            transition: transform 0.3s;
+        }
+        
+        .learn-more:hover span {
+            transform: translateX(5px);
+        }
+        
+        .comparison-section {
+            padding: 5rem 0;
+            background-color: white;
+        }
+        
+        .comparison-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 3rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .comparison-table th, .comparison-table td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .comparison-table thead th {
+            background-color: var(--primary-color);
+            color: white;
+            font-weight: 600;
+        }
+        
+        .comparison-table thead th:first-child {
+            width: 30%;
+        }
+        
+        .comparison-table tbody tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .comparison-table .checkmark {
+            color: var(--secondary-color);
+            font-weight: bold;
+        }
+        
+        .comparison-table .x-mark {
+            color: #ef4444;
+        }
+        
+        .testimonials {
+            padding: 5rem 0;
+        }
+        
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2.5rem;
+            margin-top: 3rem;
+        }
+        
+        .testimonial-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            padding: 2rem;
+        }
+        
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            color: var(--gray-color);
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 1rem;
+            background-color: #e5e7eb;
+            overflow: hidden;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            margin-bottom: 0.25rem;
+        }
+        
+        .author-info span {
+            color: var(--gray-color);
+            font-size: 0.9rem;
+        }
+        
+        .cta-section {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .cta-section p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .secondary-button {
+            background-color: white;
+            color: var(--primary-color);
+            padding: 0.75rem 1.5rem;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .secondary-button:hover {
+            background-color: #f3f4f6;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            color: #f3f4f6;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-links a {
+            color: #9ca3af;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid #374151;
+            padding-top: 2rem;
+            text-align: center;
+            color: #9ca3af;
+            font-size: 0.9rem;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            color: #9ca3af;
+            transition: color 0.3s;
+        }
+        
+        .social-links a:hover {
+            color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .comparison-table th, .comparison-table td {
+                padding: 1rem;
+            }
+            
+            .back-home {
+                bottom: 20px;
+                right: 20px;
+                padding: 0.5rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="index.html" class="logo">Your<span>Product</span></a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="features.html" class="active">Features</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+                <a href="signup.html" class="cta-button">Get Started</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <h1>Powerful Features That Set Us Apart</h1>
+            <p>Discover why thousands of companies trust our product to streamline their workflows and boost productivity.</p>
+            <a href="demo.html" class="cta-button">Request a Demo</a>
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Core Features</h2>
+                <p>Our platform is packed with innovative tools designed to help your business thrive in today's competitive landscape.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="/api/placeholder/100/100" alt="Analytics Dashboard" />
+                    </div>
+                    <div class="feature-content">
+                        <h3>Advanced Analytics</h3>
+                        <p>Gain valuable insights with our comprehensive analytics dashboard. Track performance metrics, user behavior, and business KPIs in real-time.</p>
+                        <a href="features/analytics.html" class="learn-more">Learn more <span>→</span></a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="/api/placeholder/100/100" alt="Automation" />
+                    </div>
+                    <div class="feature-content">
+                        <h3>Workflow Automation</h3>
+                        <p>Automate repetitive tasks and streamline your business processes. Create custom workflows that save time and reduce errors.</p>
+                        <a href="features/automation.html" class="learn-more">Learn more <span>→</span></a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="/api/placeholder/100/100" alt="Collaboration" />
+                    </div>
+                    <div class="feature-content">
+                        <h3>Team Collaboration</h3>
+                        <p>Foster teamwork with our suite of collaboration tools. Share projects, communicate effectively, and work together seamlessly.</p>
+                        <a href="features/collaboration.html" class="learn-more">Learn more <span>→</span></a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="/api/placeholder/100/100" alt="Security" />
+                    </div>
+                    <div class="feature-content">
+                        <h3>Enterprise-Grade Security</h3>
+                        <p>Protect your data with our advanced security features. End-to-end encryption, role-based access control, and regular security audits.</p>
+                        <a href="features/security.html" class="learn-more">Learn more <span>→</span></a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="/api/placeholder/100/100" alt="Integrations" />
+                    </div>
+                    <div class="feature-content">
+                        <h3>Seamless Integrations</h3>
+                        <p>Connect with your favorite tools and services. Our platform integrates with over 100+ popular applications and APIs.</p>
+                        <a href="features/integrations.html" class="learn-more">Learn more <span>→</span></a>
+                    </div>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <img src="/api/placeholder/100/100" alt="Mobile Access" />
+                    </div>
+                    <div class="feature-content">
+                        <h3>Mobile Accessibility</h3>
+                        <p>Access your work from anywhere with our mobile apps. Stay productive on the go with full-featured mobile experience.</p>
+                        <a href="features/mobile.html" class="learn-more">Learn more <span>→</span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="comparison-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Feature Comparison</h2>
+                <p>See how our product stacks up against the competition with this comprehensive feature comparison.</p>
+            </div>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Features</th>
+                        <th>Basic Plan</th>
+                        <th>Pro Plan</th>
+                        <th>Enterprise Plan</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Core Platform Access</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Number of Users</td>
+                        <td>Up to 5</td>
+                        <td>Up to 20</td>
+                        <td>Unlimited</td>
+                    </tr>
+                    <tr>
+                        <td>Storage Space</td>
+                        <td>10 GB</td>
+                        <td>100 GB</td>
+                        <td>1 TB</td>
+                    </tr>
+                    <tr>
+                        <td>Advanced Analytics</td>
+                        <td class="x-mark">✗</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Workflow Automation</td>
+                        <td class="x-mark">✗</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td>API Access</td>
+                        <td class="x-mark">✗</td>
+                        <td class="checkmark">✓</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Priority Support</td>
+                        <td class="x-mark">✗</td>
+                        <td class="x-mark">✗</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Custom Integrations</td>
+                        <td class="x-mark">✗</td>
+                        <td class="x-mark">✗</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                    <tr>
+                        <td>Dedicated Account Manager</td>
+                        <td class="x-mark">✗</td>
+                        <td class="x-mark">✗</td>
+                        <td class="checkmark">✓</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Customers Say</h2>
+                <p>Don't just take our word for it. Here's what some of our satisfied customers have to say about our product.</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"This product has completely transformed how our team collaborates. The workflow automation features alone have saved us countless hours each week."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="/api/placeholder/50/50" alt="Sarah Johnson" />
+                        </div>
+                        <div class="author-info">
+                            <h4>Sarah Johnson</h4>
+                            <span>Director of Operations, TechCorp</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"The analytics dashboard provides exactly the insights we need to make informed business decisions. It's intuitive yet powerful enough for our complex needs."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="/api/placeholder/50/50" alt="Michael Chen" />
+                        </div>
+                        <div class="author-info">
+                            <h4>Michael Chen</h4>
+                            <span>Data Analyst, GlobalFirm</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"We evaluated several solutions before choosing this one. The enterprise-grade security features gave us confidence that our sensitive data is protected."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="/api/placeholder/50/50" alt="Jessica Williams" />
+                        </div>
+                        <div class="author-info">
+                            <h4>Jessica Williams</h4>
+                            <span>IT Director, SecureFinance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="container">
+            <h2>Ready to Experience These Features?</h2>
+            <p>Join thousands of satisfied customers who have transformed their businesses with our powerful platform.</p>
+            <div class="cta-buttons">
+                <a href="signup.html" class="cta-button">Start Free Trial</a>
+                <a href="demo.html" class="secondary-button">Schedule Demo</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>YourProduct</h3>
+                    <p>Empowering businesses with innovative solutions since 2015.</p>
+                    <div class="social-links">
+                        <a href="#">Twitter</a>
+                        <a href="#">LinkedIn</a>
+                        <a href="#">Facebook</a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Product</h3>
+                    <ul class="footer-links">
+                        <li><a href="features.html">Features</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="integrations.html">Integrations</a></li>
+                        <li><a href="roadmap.html">Roadmap</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul class="footer-links">
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="docs.html">Documentation</a></li>
+                        <li><a href="guides.html">Guides</a></li>
+                        <li><a href="webinars.html">Webinars</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul class="footer-links">
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="careers.html">Careers</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="press.html">Press</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Legal</h3>
+                    <ul class="footer-links">
+                        <li><a href="terms.html">Terms of Service</a></li>
+                        <li><a href="privacy.html">Privacy Policy</a></li>
+                        <li><a href="security.html">Security</a></li>
+                        <li><a href="gdpr.html">GDPR</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 YourProduct. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Home Button -->
+    <a href="mainpage.html" class="back-home">
+        ← Back to Home
+    </a>
+</body>
+</html>

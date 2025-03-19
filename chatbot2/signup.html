@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up Page</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+                'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+                sans-serif;
+        }
+        
+        body {
+            background-color: #f7f7f7;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        
+        .signup-container {
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .signup-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .signup-header h1 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-control {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-control label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #555;
+        }
+        
+        .form-control input {
+            width: 100%;
+            padding: 0.75rem;
+            font-size: 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+        
+        .form-control input:focus {
+            outline: none;
+            border-color: #4285f4;
+            box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.2);
+        }
+        
+        .row {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .row .form-control {
+            flex: 1;
+        }
+        
+        .btn-primary {
+            width: 100%;
+            padding: 0.75rem;
+            background-color: #4285f4;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
+        }
+        
+        .btn-primary:hover {
+            background-color: #3367d6;
+        }
+        
+        .signup-footer {
+            text-align: center;
+            margin-top: 1.5rem;
+        }
+        
+        .login-link {
+            color: #4285f4;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .login-link:hover {
+            text-decoration: underline;
+        }
+        
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+        }
+        
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        .divider span {
+            padding: 0 10px;
+            color: #777;
+            font-size: 0.8rem;
+        }
+        
+        .back-link {
+            display: block;
+            text-align: center;
+            margin-top: 1rem;
+            color: #666;
+            font-size: 0.9rem;
+            text-decoration: none;
+        }
+        
+        .back-link:hover {
+            color: #333;
+        }
+        
+        .terms {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 0.2rem;
+        }
+        
+        .terms input {
+            margin-right: 0.5rem;
+            margin-top: 0.2rem;
+        }
+        
+        .terms label {
+            font-size: 0.9rem;
+            color: #555;
+            line-height: 1.4;
+        }
+        
+        .terms a {
+            color: #4285f4;
+            text-decoration: none;
+        }
+        
+        .terms a:hover {
+            text-decoration: underline;
+        }
+        
+        .password-requirements {
+            font-size: 0.8rem;
+            color: #777;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <div class="signup-header">
+            <h1>Create an account</h1>
+            <h1>Sign Up</h1>
+         </div>
+        
+        <form id="signupForm">
+            <div class="row">
+                <div class="form-control">
+                    <label for="firstName">First name</label>
+                    <input type="text" id="firstName" name="firstName" placeholder="Enter first name" required />
+                </div>
+                
+                <div class="form-control">
+                    <label for="lastName">Last name</label>
+                    <input type="text" id="lastName" name="lastName" placeholder="Enter last name" required />
+                </div>
+            </div>
+            
+            <div class="form-control">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email" required />
+            </div>
+            
+            <div class="form-control">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Create a password" required />
+                <p class="password-requirements">Password must be at least 8 characters long with a number and a special character.</p>
+            </div>
+            
+            <div class="form-control">
+                <label for="confirmPassword">Confirm password</label>
+                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required />
+            </div>
+            
+            <div class="terms">
+                <input type="checkbox" id="terms" name="terms" required />
+                <label for="terms">I agree to the <a href="Terms of service.html">Terms of Service</a> and <a href="privacy policy.html">Privacy Policy</a>.</label>
+            </div>
+            
+            <button type="submit" class="btn-primary">Create account</button>
+            
+            <div class="divider">
+                <span>OR</span>
+            </div>
+            
+            <div class="signup-footer">
+                <p>Already have an account? <a href="login.html" class="login-link">Sign in</a></p>
+            </div>
+        </form>
+        
+        <a href="mainpage.html" class="back-link">Back to Home</a>
+    </div>
+
+    <script>
+        document.getElementById('signupForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const firstName = document.getElementById('firstName').value;
+            const lastName = document.getElementById('lastName').value;
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const terms = document.getElementById('terms').checked;
+            
+            // Check if passwords match
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                return;
+            }
+            
+            // Check password strength (basic validation)
+            if (password.length < 8) {
+                alert('Password must be at least 8 characters long');
+                return;
+            }
+            
+            // Check terms agreement
+            if (!terms) {
+                alert('You must agree to the Terms of Service and Privacy Policy');
+                return;
+            }
+            
+            // Here you would normally process the signup
+            alert(`Account created for ${firstName} ${lastName} (${email})! Redirecting to login...`);
+            
+            // Redirect to login page after successful signup
+            window.location.href = "login.html";
+        });
+    </script>
+</body>
+</html>
